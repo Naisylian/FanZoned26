@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WorldCupPulse — Coming June 11th</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a1f0f;
+      color: #ffffff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .ball {
+      font-size: 64px;
+      margin-bottom: 1.5rem;
+      animation: bounce 1.8s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+
+    .logo {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo span {
+      color: #2ecc71;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #7dba8a;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .countdown-label {
+      font-size: 0.85rem;
+      color: #4a7a55;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .time-block {
+      background: #0f3318;
+      border: 1px solid #1a5c2a;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      min-width: 80px;
+    }
+
+    .time-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #2ecc71;
+      display: block;
+    }
+
+    .time-unit {
+      font-size: 0.7rem;
+      color: #4a7a55;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .features {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .feature {
+      background: #0f3318;
+      border: 1px solid #1a5c2a;
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.85rem;
+      color: #7dba8a;
+    }
+
+    .price-tag {
+      background: #2ecc71;
+      color: #0a1f0f;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .price-sub {
+      font-size: 0.8rem;
+      color: #4a7a55;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ball">⚽</div>
+
+  <div class="logo">WorldCup<span>Pulse</span></div>
+  <div class="tagline">FIFA World Cup 2026 Fan Platform</div>
+
+  <div class="countdown-label">Launching in</div>
+  <div class="countdown">
+    <div class="time-block">
+      <span class="time-number" id="days">00</span>
+      <span class="time-unit">Days</span>
+    </div>
+    <div class="time-block">
+      <span class="time-number" id="hours">00</span>
+      <span class="time-unit">Hours</span>
+    </div>
+    <div class="time-block">
+      <span class="time-number" id="minutes">00</span>
+      <span class="time-unit">Mins</span>
+    </div>
+    <div class="time-block">
+      <span class="time-number" id="seconds">00</span>
+      <span class="time-unit">Secs</span>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature">⚡ Live Match Chat</div>
+    <div class="feature">🏆 Team Communities</div>
+    <div class="feature">🎯 Match Predictions</div>
+    <div class="feature">📊 Tournament Dashboard</div>
+  </div>
+
+  <div class="price-tag">One-time $10 — Full Tournament Access</div>
+  <div class="price-sub">48 Teams · 12 Groups · 1 Champion</div>
+
+  <script>
+    const launch = new Date('2026-06-11T00:00:00').getTime();
+    function tick() {
+      const now = new Date().getTime();
+      const diff = launch - now;
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('days').textContent = String(d).padStart(2,'0');
+      document.getElementById('hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(m).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+
+</body>
+</html>
