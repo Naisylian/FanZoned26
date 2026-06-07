@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WorldCupPulse — Coming June 11th</title>
+  <title>FanZoned26 — Coming June 11th</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      background: #0a1f0f;
+      background: #0a1628;
       color: #ffffff;
       font-family: 'Segoe UI', Arial, sans-serif;
       min-height: 100vh;
@@ -19,37 +18,24 @@
       text-align: center;
       padding: 2rem;
     }
-
-    .ball {
-      font-size: 64px;
-      margin-bottom: 1.5rem;
-      animation: bounce 1.8s infinite ease-in-out;
+    .logo-img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      animation: bounce 2s infinite ease-in-out;
     }
-
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
+      50% { transform: translateY(-12px); }
     }
-
-    .logo {
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-    }
-
-    .logo span {
-      color: #2ecc71;
-    }
-
     .tagline {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #7dba8a;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 2.5rem;
     }
-
     .countdown-label {
       font-size: 0.85rem;
       color: #4a7a55;
@@ -57,14 +43,13 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
-
     .countdown {
       display: flex;
       gap: 1.5rem;
       justify-content: center;
       margin-bottom: 3rem;
+      flex-wrap: wrap;
     }
-
     .time-block {
       background: #0f3318;
       border: 1px solid #1a5c2a;
@@ -72,29 +57,25 @@
       padding: 1rem 1.5rem;
       min-width: 80px;
     }
-
     .time-number {
       font-size: 2.2rem;
       font-weight: 700;
       color: #2ecc71;
       display: block;
     }
-
     .time-unit {
       font-size: 0.7rem;
       color: #4a7a55;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
-
     .features {
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
       margin-bottom: 3rem;
     }
-
     .feature {
       background: #0f3318;
       border: 1px solid #1a5c2a;
@@ -103,7 +84,6 @@
       font-size: 0.85rem;
       color: #7dba8a;
     }
-
     .price-tag {
       background: #2ecc71;
       color: #0a1f0f;
@@ -115,7 +95,6 @@
       margin-bottom: 1rem;
       letter-spacing: 1px;
     }
-
     .price-sub {
       font-size: 0.8rem;
       color: #4a7a55;
@@ -125,9 +104,9 @@
 </head>
 <body>
 
-  <div class="ball">⚽</div>
+  <img src="logo.png" alt="FanZoned26 Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('fallback').style.display='block'"/>
+  <div id="fallback" style="display:none; font-size:64px; margin-bottom:1rem;">⚽</div>
 
-  <div class="logo">WorldCup<span>Pulse</span></div>
   <div class="tagline">FIFA World Cup 2026 Fan Platform</div>
 
   <div class="countdown-label">Launching in</div>
@@ -165,17 +144,11 @@
     function tick() {
       const now = new Date().getTime();
       const diff = launch - now;
-      if (diff <= 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        return;
-      }
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      if (diff <= 0) return;
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const s = Math.floor((diff % (1000*60)) / 1000);
       document.getElementById('days').textContent = String(d).padStart(2,'0');
       document.getElementById('hours').textContent = String(h).padStart(2,'0');
       document.getElementById('minutes').textContent = String(m).padStart(2,'0');
